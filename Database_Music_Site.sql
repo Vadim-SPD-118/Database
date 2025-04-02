@@ -3,17 +3,17 @@ CREATE DATABASE music_site WITH OWNER = postgres;
 \c music_site;
 
 CREATE TABLE IF NOT EXISTS Genres (
-    GenreID INT PRIMARY KEY AUTO_INCREMENT,
+    GenreID SERIAL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Artists (
-    ArtistID INT PRIMARY KEY AUTO_INCREMENT,
+    ArtistID SERIAL PRIMARY KEY,
     Name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS ArtistGenres (
-    ArtistGenreID INT PRIMARY KEY AUTO_INCREMENT,
+    ArtistGenreID SERIAL PRIMARY KEY,
     ArtistID INT,
     GenreID INT,
     FOREIGN KEY (ArtistID) REFERENCES Artists(ArtistID),
@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS ArtistGenres (
 );
 
 CREATE TABLE IF NOT EXISTS Albums (
-    AlbumID INT PRIMARY KEY AUTO_INCREMENT,
+    AlbumID SERIAL PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,
     ReleaseYear YEAR
 );
 
 CREATE TABLE IF NOT EXISTS AlbumArtists (
-    AlbumArtistID INT PRIMARY KEY AUTO_INCREMENT,
+    AlbumArtistID SERIAL PRIMARY KEY,
     AlbumID INT,
     ArtistID INT,
     FOREIGN KEY (AlbumID) REFERENCES Albums(AlbumID),
@@ -35,21 +35,21 @@ CREATE TABLE IF NOT EXISTS AlbumArtists (
 );
 
 CREATE TABLE IF NOT EXISTS Tracks (
-    TrackID INT PRIMARY KEY AUTO_INCREMENT,
+    TrackID SERIAL PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,
-    Duration TIME,
+    Duration INT,
     AlbumID INT,
     FOREIGN KEY (AlbumID) REFERENCES Albums(AlbumID)
 );
 
 CREATE TABLE IF NOT EXISTS Compilations (
-    CompilationID INT PRIMARY KEY AUTO_INCREMENT,
+    CompilationID SERIAL PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,
     ReleaseYear YEAR
 );
 
 CREATE TABLE IF NOT EXISTS CompilationTracks (
-    CompilationTrackID INT PRIMARY KEY AUTO_INCREMENT,
+    CompilationTrackID SERIAL PRIMARY KEY,
     CompilationID INT,
     TrackID INT,
     FOREIGN KEY (CompilationID) REFERENCES Compilations(CompilationID),
