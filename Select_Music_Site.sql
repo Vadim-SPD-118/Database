@@ -24,7 +24,14 @@ WHERE Name NOT LIKE '% %';
 /* The name of tracks that contain the word 'мой' or 'my' */
 SELECT Title
 FROM Tracks
-WHERE Title ILIKE '%мой%' OR Title ILIKE '%my%';
+WHERE Title ILIKE '% мой %' 
+OR Title ILIKE 'мой %'
+OR Title ILIKE '% мой'
+OR Title ILIKE 'мой'
+OR Title ILIKE'% my %' 
+OR Title ILIKE 'my %'
+OR Title ILIKE '% my'
+OR Title ILIKE 'my';
 
 /* task 3 */
 
@@ -47,11 +54,15 @@ JOIN Tracks t ON a.AlbumID = t.AlbumID
 GROUP BY a.Title;
 
 /* All artists who haven't released albums in 2020 */
-SELECT DISTINCT ar.Name
+SELECT ar.Name
 FROM Artists ar
-LEFT JOIN AlbumArtists aa ON ar.ArtistID = aa.ArtistID
-LEFT JOIN Albums al ON aa.AlbumID = al.AlbumID AND al.ReleaseYear = 2020
-WHERE al.AlbumID IS NULL;
+WHERE ar.Name NOT IN (
+    SELECT ar.Name
+    FROM ar
+    JOIN AlbumArtists aa ON ar.ArtistID = aa.ArtistID
+    JOIN Albums al ON aa.AlbumID = al.AlbumID
+    WHERE al.ReleaseYear = 2020
+);
 
 /* Titles of compilations featuring the artist Queen */
 SELECT DISTINCT c.Title
@@ -70,6 +81,26 @@ JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
 JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
 GROUP BY a.Title
 HAVING COUNT(DISTINCT ag.GenreID) > 1;
+
+SELECT a.Title AS AlbumTitle
+FROM Albums a
+JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
+JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
+GROUP BY a.AlbumID, a.Title
+HAVING COUNT(DISTINCT ag.GenreID) > 1;
+
+SELECT a.Title AS AlbumTitle
+FROM Albums a
+JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
+JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
+GROUP BY a.Title
+HAVING COUNT(DISTINCT ag.GenreID) > 1 OR a.AlbumID IN (
+    SELECT aa.AlbumID
+    FROM AlbumArtists aa
+    JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
+    GROUP BY aa.ArtistID
+    HAVING COUNT(DISTINCT ag.GenreID) > 1
+);
 
 /* Names of tracks that are not included in compilations */
 SELECT t.Title

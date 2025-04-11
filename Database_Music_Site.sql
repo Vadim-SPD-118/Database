@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS ArtistGenres (
 CREATE TABLE IF NOT EXISTS Albums (
     AlbumID SERIAL PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,
-    ReleaseYear YEAR
+    ReleaseYear SMALLINT
 );
 
 CREATE TABLE IF NOT EXISTS AlbumArtists (
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Tracks (
 CREATE TABLE IF NOT EXISTS Compilations (
     CompilationID SERIAL PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,
-    ReleaseYear YEAR
+    ReleaseYear SMALLINT
 );
 
 CREATE TABLE IF NOT EXISTS CompilationTracks (
