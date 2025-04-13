@@ -75,11 +75,12 @@ WHERE aa.ArtistID = (SELECT ArtistID FROM Artists WHERE Name = 'Queen');
 /* task 4 */
 
 /* Album titles that feature artists from more than one genre */
+
 SELECT a.Title AS AlbumTitle
 FROM Albums a
 JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
 JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
-GROUP BY a.Title
+GROUP BY a.AlbumID, aa.ArtistID
 HAVING COUNT(DISTINCT ag.GenreID) > 1;
 
 /* Names of tracks that are not included in compilations */
