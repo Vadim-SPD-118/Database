@@ -2,7 +2,9 @@
 INSERT INTO Genres (Name) VALUES
 ('Rock'),
 ('Pop'),
-('Jazz');
+('Jazz'),
+('Metal'),
+('Classsic');
 
 /* inserting artists */
 INSERT INTO Artists (Name) VALUES
@@ -10,7 +12,8 @@ INSERT INTO Artists (Name) VALUES
 ('Queen'),
 ('Miles Davis'),
 ('Adele'),
-('Linkin Park');
+('Linkin Park'),
+('Сергей Лемешев');
 
 /* inserting albums */
 INSERT INTO Albums (Title, ReleaseYear) VALUES
@@ -20,7 +23,8 @@ INSERT INTO Albums (Title, ReleaseYear) VALUES
 ('Future Nostalgia', 2020),
 ('Fine Line', 2019),
 ('After Hours', 2020),
-('Hybrid Theory', 2000);
+('Hybrid Theory', 2000),
+('Русская Классика', 1955);
 
 /* inserting tracks */
 INSERT INTO Tracks (Title, Duration, AlbumID) VALUES
@@ -28,12 +32,12 @@ INSERT INTO Tracks (Title, Duration, AlbumID) VALUES
 ('Bohemian Rhapsody', 354, 2),
 ('So What', 545, 3),
 ('Here Comes the Sun', 185, 1),
-('You’re My Best Friend', 220, 2),
+('Youre My Best Friend', 220, 2),
 ('Freddie Freeloader', 320, 3),
-('Don’t Start Now', 183, 4),  -- Future Nostalgia
-('Adore You', 200, 5),        -- Fine Line
-('Blinding Lights', 200, 6),  -- After Hours
-('One Step Closer', 180, 7),  -- Hybrid Theory
+('Dont Start Now', 183, 4),
+('Adore You', 200, 5),
+('Blinding Lights', 200, 6),
+('One Step Closer', 180, 7),
 ('Crawling', 220, 7),
 ('my own', 200, 1),
 ('own my', 210, 2),
@@ -45,7 +49,8 @@ INSERT INTO Tracks (Title, Duration, AlbumID) VALUES
 ('myself by', 200, 1),
 ('by myself by', 205, 2),
 ('beemy', 180, 3),
-('premyne', 195, 4);
+('premyne', 195, 4),
+('мой Лизочек', 200, 8);
 
 /* inserting compliations */
 INSERT INTO Compilations (Title, ReleaseYear) VALUES
@@ -57,30 +62,33 @@ INSERT INTO Compilations (Title, ReleaseYear) VALUES
 
 /* inserting artists and genres */
 INSERT INTO ArtistGenres (ArtistID, GenreID) VALUES
-(1, 1),  -- The Beatles - Rock
-(1, 2),  -- The Beatles - Pop
-(2, 1),  -- Queen - Rock
-(3, 3),  -- Miles Davis - Jazz
-(4, 2),  -- Adele - Pop
-(5, 1),  -- Linkin Park - Rock
-(5, 2);  -- Linkin Park - Metal
+(1, 1),  -- The Beatles    - Rock
+(1, 2),  -- The Beatles    - Pop
+(2, 1),  -- Queen          - Rock
+(3, 3),  -- Miles Davis    - Jazz
+(4, 2),  -- Adele          - Pop
+(5, 1),  -- Linkin Park    - Rock
+(5, 4),  -- Linkin Park    - Metal
+(6, 5);  -- Сергей Лемешев - Classic
 
 /* inserting artists and albums */
 INSERT INTO AlbumArtists (AlbumID, ArtistID) VALUES
-(1, 1),  -- Abbey Road - The Beatles
+(1, 1),  -- Abbey Road           - The Beatles
 (2, 2),  -- A Night at the Opera - Queen
-(3, 3),  -- Kind of Blue - Miles Davis
-(4, 4),  -- Future Nostalgia - Adele
-(5, 4),  -- Fine Line - Adele
-(6, 2);  -- After Hours - Queen
+(3, 3),  -- Kind of Blue         - Miles Davis
+(4, 4),  -- Future Nostalgia     - Adele
+(5, 4),  -- Fine Line            - Adele
+(6, 2),  -- After Hours          - Queen
+(7, 5),  -- Hybrid Theory        - Linkin Park
+(8, 6);  -- Русская Классика     - Сергей Лемешев
 
 /* inserting compliations and tracks */
 INSERT INTO CompilationTracks (CompilationID, TrackID) VALUES
-(1, 1),  -- Greatest Hits Vol. 1 - Come Together
-(1, 2),  -- Greatest Hits Vol. 1 - Bohemian Rhapsody
+(1, 1),  -- Greatest Hits Vol. 1          - Come Together
+(1, 2),  -- Greatest Hits Vol. 1          - Bohemian Rhapsody
 (2, 3),  -- The Essential Jazz Collection - So What
 (2, 6),  -- The Essential Jazz Collection - Freddie Freeloader
-(3, 4),  -- Pop Classics - Here Comes the Sun
-(4, 5),  -- Rock Legends - You’re My Best Friend
-(5, 1),  -- Greatest Hits Vol. 1 - Come Together
-(5, 2);  -- Rock Anthems - Bohemian Rhapsody
+(3, 4),  -- Pop Classics                  - Here Comes the Sun
+(4, 5),  -- Rock Legends                  - Youre My Best Friend
+(5, 1),  -- Greatest Hits Vol. 1          - Come Together
+(5, 2);  -- Rock Anthems                  - Bohemian Rhapsody

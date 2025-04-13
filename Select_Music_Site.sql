@@ -58,7 +58,7 @@ SELECT ar.Name
 FROM Artists ar
 WHERE ar.Name NOT IN (
     SELECT ar.Name
-    FROM ar
+    FROM Artists ar
     JOIN AlbumArtists aa ON ar.ArtistID = aa.ArtistID
     JOIN Albums al ON aa.AlbumID = al.AlbumID
     WHERE al.ReleaseYear = 2020
@@ -81,26 +81,6 @@ JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
 JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
 GROUP BY a.Title
 HAVING COUNT(DISTINCT ag.GenreID) > 1;
-
-SELECT a.Title AS AlbumTitle
-FROM Albums a
-JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
-JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
-GROUP BY a.AlbumID, a.Title
-HAVING COUNT(DISTINCT ag.GenreID) > 1;
-
-SELECT a.Title AS AlbumTitle
-FROM Albums a
-JOIN AlbumArtists aa ON a.AlbumID = aa.AlbumID
-JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
-GROUP BY a.Title
-HAVING COUNT(DISTINCT ag.GenreID) > 1 OR a.AlbumID IN (
-    SELECT aa.AlbumID
-    FROM AlbumArtists aa
-    JOIN ArtistGenres ag ON aa.ArtistID = ag.ArtistID
-    GROUP BY aa.ArtistID
-    HAVING COUNT(DISTINCT ag.GenreID) > 1
-);
 
 /* Names of tracks that are not included in compilations */
 SELECT t.Title
